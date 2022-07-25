@@ -1,0 +1,5 @@
+bin/
+obj/
+*.json
+*.sqlite
+/.vs/TelegramRAT/v16/.suo
