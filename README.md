@@ -20,7 +20,7 @@ All commands receive as a parameter the ID of the infected PC. *0* is reserved a
      * /upload <id> <path>: it indicates to the target where to download the file that will be sent to the bot.
      * /exec <id> <command>: it executes <command> on the target machine, returning its response.
      * /start <id> <appName> <parameters>: the app specified by <appName> with <parameters> parameters is run.
-     * /apps <id>: a list of the installed apps is retrieved.
+     * /apps <id>: a list of the installed apps is retrieved. (NOT working in Windows 11.)
      * /info <id>: user and PC information is retrieved.
      * /listdirs <id> <path>: a list of the directories inside of <path> is retrieved.
      * /listfiles <id> <path>: a list of the files inside of <path> is retrieved.
