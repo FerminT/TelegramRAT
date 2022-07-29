@@ -10,6 +10,8 @@ Two configuration constants have to be specified in ```Config.cs```:
 Once the program is deployed and executed, a message will be sent from the bot to the Telegram account anouncing a PC is online. The attacker can then begin to send commands to control the infected PC.
 Each infected PC possesses a different random ID, so several PCs can be controlled by a single user.
 
+[![Fig-README.png](https://i.postimg.cc/3wnKV3LH/Fig-README.png)](https://postimg.cc/XZBSy6S2)
+
 ## Available commands
 All commands receive as a parameter the ID of the infected PC. *0* is reserved as a broadcast ID.
 
